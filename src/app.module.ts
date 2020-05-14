@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import {configService} from "./config/config.service";
 import {JwtModule} from "@nestjs/jwt";
+import { PostsModule } from './posts/posts.module';
 
 
 @Module({
@@ -13,6 +14,7 @@ import {JwtModule} from "@nestjs/jwt";
       TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
       UsersModule,
       AuthModule,
+      PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
