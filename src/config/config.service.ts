@@ -1,13 +1,14 @@
 // src/config/config.service.ts
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import {TypeOrmModuleOptions} from '@nestjs/typeorm';
 
 require('dotenv').config();
 
 class ConfigService {
 
-    constructor(private env: { [k: string]: string | undefined }) { }
+    constructor(private env: { [k: string]: string | undefined }) {
+    }
 
-    private getValue(key: string, throwOnMissing = true): string {
+    getValue(key: string, throwOnMissing = true): string {
         const value = this.env[key];
         if (!value && throwOnMissing) {
             throw new Error(`config error - missing env.${key}`);
@@ -44,13 +45,15 @@ class ConfigService {
 
         };
         if (includeMigrations) {
-            config = Object.assign(config, { migrationsTableName: 'migration',
+            config = Object.assign(config, {
+                migrationsTableName: 'migration',
 
                 migrations: ['src/migration/*.ts'],
 
                 cli: {
                     migrationsDir: 'src/migration',
-                }});
+                }
+            });
         }
         return config as TypeOrmModuleOptions;
     }
@@ -63,7 +66,8 @@ const configService = new ConfigService(process.env)
         'MYSQL_PORT',
         'MYSQL_USER',
         'MYSQL_PASSWORD',
-        'MYSQL_DATABASE'
+        'MYSQL_DATABASE',
+        "JWT_SECRET"
     ]);
 
-export { configService };
+export {configService};
