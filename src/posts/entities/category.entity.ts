@@ -1,4 +1,5 @@
-import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn} from "typeorm";
+import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn, OneToMany} from "typeorm";
+import {Post} from "./post.entity";
 
 @Entity()
 @Tree("nested-set")
@@ -15,4 +16,7 @@ export class Category {
 
     @TreeParent()
     parent: Category;
+
+    @OneToMany(type => Post, post => post.category)
+    posts: Post[];
 }

@@ -48,4 +48,8 @@ export class CategoryService {
             await this.categoriesRepository.remove(category);
         }
     }
+
+    async findOne(id: any) {
+        return await this.categoriesRepository.findOneOrFail(id);
+    }
 }
