@@ -41,4 +41,11 @@ export class CategoryService {
         category.name = updateData.name;
         return await this.categoriesRepository.save(category);
     }
+
+    async deleteCategory(catId) {
+        let category = await this.categoriesRepository.findOneOrFail(catId);
+        if (category.name !== 'root') {
+            await this.categoriesRepository.remove(category);
+        }
+    }
 }
