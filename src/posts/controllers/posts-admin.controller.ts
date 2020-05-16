@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, Query, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Query, UseGuards} from '@nestjs/common';
 import {PostsService} from "../services/posts.service";
 import {JwtAuthGuard} from "../../auth/jwt-auth.guard";
 
@@ -32,4 +32,9 @@ export class PostsAdminController {
         return await this.postsService.updatePost(id, postData);
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Delete(":id")
+    async removePost(@Param("id") id) {
+        return await this.postsService.removePost(id);
+    }
 }

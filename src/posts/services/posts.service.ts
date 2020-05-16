@@ -36,7 +36,7 @@ export class PostsService {
         queryBuilder.leftJoinAndSelect("Post.category", "category")
         if (parameters.page && !count) {
             let offset = (parameters.page - 1) * parameters.perPage;
-            queryBuilder.skip(offset).limit(parameters.perPage)
+            queryBuilder.offset(offset).limit(parseInt(parameters.perPage))
         }
         if (parameters.category) {
             queryBuilder.where("categoryId=:cid", {cid: parameters.category});
@@ -80,5 +80,10 @@ export class PostsService {
         }
 
         return await this.postRepository.save(post);
+    }
+
+    async removePost(postId) {
+        let post = await this.postRepository.findOneOrFail(postId);
+        return await this.postRepository.remove(post);
     }
 }
