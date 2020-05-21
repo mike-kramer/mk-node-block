@@ -67,7 +67,8 @@ const configService = new ConfigService(process.env)
         'MYSQL_USER',
         'MYSQL_PASSWORD',
         'MYSQL_DATABASE',
-        "JWT_SECRET"
+        "JWT_SECRET",
+        "RECAPTCHA_SECRET"
     ]);
 
 export {configService};
