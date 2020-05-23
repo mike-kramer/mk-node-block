@@ -13,6 +13,9 @@ export class Post {
     @Column('longtext')
     text: string;
 
+    @Column('text')
+    excerpt: string;
+
     @Column({name: "createdAt", type: "datetime"})
     createdAt: Date;
 

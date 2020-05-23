@@ -26,8 +26,25 @@ export class CategoryAdminController {
     }
 
     @UseGuards(JwtAuthGuard)
+    @Post("move/:id/:direction")
+    async moveCat(@Param("id") id, @Param("direction") direction) {
+        if (direction === 'up') {
+            return await this.categoryService.moveCategoryUp(id);
+        }
+        return await this.categoryService.moveCategoryDown(id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post("move-into/:id/:to")
+    async moveCatInto(@Param("id") id, @Param("to") to) {
+        return await this.categoryService.moveInto(id, to);
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Delete(":id")
     async deleteCategory(@Param('id') id) {
         return await this.categoryService.deleteCategory(id);
     }
+
+
 }

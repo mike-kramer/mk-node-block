@@ -17,7 +17,7 @@ export class PostsAdminController {
     @UseGuards(JwtAuthGuard)
     @Get(":id")
     async singlePost(@Param("id") id) {
-        return await this.postsService.single(id);
+        return await this.postsService.singleUnsanitized(id);
     }
 
     @UseGuards(JwtAuthGuard)
