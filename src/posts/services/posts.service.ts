@@ -55,8 +55,8 @@ export class PostsService {
             } else {
                 catRec = catRec[0];
             }
-            queryBuilder.where("category.nsleft >= :left", {left: catRec.nsleft});
-            queryBuilder.where("category.nsright <= :right", {right: catRec.nsright});
+            queryBuilder.andWhere("category.nsleft >= :left", {left: catRec.nsleft});
+            queryBuilder.andWhere("category.nsright <= :right", {right: catRec.nsright});
         }
 
         if (parameters.sortBy && ['title', 'createdAt'].indexOf(parameters.sortBy) !== -1) {
