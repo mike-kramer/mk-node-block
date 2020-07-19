@@ -19,6 +19,9 @@ export class Post {
     @Column({name: "createdAt", type: "datetime"})
     createdAt: Date;
 
+    @Column()
+    updatedAtTimeStamp: number;
+
     @ManyToOne(type => Category, category => category.posts, {eager: true})
     @JoinTable()
     category: Category;

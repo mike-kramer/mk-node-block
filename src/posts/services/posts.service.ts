@@ -95,9 +95,12 @@ export class PostsService {
         post.excerpt = postData.excerpt;
         post.title = postData.title;
         post.category = category;
+
+        let currentDate = new Date;
         if (!post.id) {
-            post.createdAt = new Date;
+            post.createdAt = currentDate;
         }
+        post.updatedAtTimeStamp = Math.floor(Date.now() / 1000);
 
         return await this.postRepository.save(post);
     }
